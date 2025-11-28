@@ -1,0 +1,20 @@
+// The Dev Container format allows you to configure your environment. At the heart of it
+// is a Docker image or Dockerfile which controls the tools available in your environment.
+//
+// See https://aka.ms/devcontainer.json for more information.
+{
+	"name": "Startup",
+	// Use "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+	// instead of the build to use a pre-built image.
+	"build": {
+        "context": ".",
+        "dockerfile": "Dockerfile"
+    },
+	// Configure environment variables for Ruby gems
+	"remoteEnv": {
+		"GEM_HOME": "${containerEnv:HOME}/.gems",
+		"PATH": "${containerEnv:HOME}/.gems/bin:${containerEnv:PATH}"
+	},
+	// Install Jekyll and Bundler on container creation
+	"postCreateCommand": "gem install jekyll bundler"
+}
